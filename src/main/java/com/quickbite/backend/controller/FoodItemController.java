@@ -38,4 +38,9 @@ public class FoodItemController {
         foodItemService.deleteFoodItem(id);
         return "Food item deleted successfully";
     }
+
+    @PutMapping("/{id}")
+    public FoodItem updateFoodItem(@PathVariable Long id, @RequestBody FoodItem foodItem) {
+        return foodItemService.updateFoodItem(id, foodItem);
+    }
 }

@@ -32,4 +32,19 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+    public User updateUser(Long id, User updatedUser) {
+
+        // find existing user from DB
+        User existingUser = userRepository.findById(id).orElse(null);
+
+        // update fields
+        existingUser.setName(updatedUser.getName());
+        existingUser.setEmail(updatedUser.getEmail());
+        existingUser.setPassword(updatedUser.getPassword());
+        existingUser.setPhone(updatedUser.getPhone());
+        existingUser.setRole(updatedUser.getRole());
+
+        // save back to DB
+        return userRepository.save(existingUser);
+    }
 }

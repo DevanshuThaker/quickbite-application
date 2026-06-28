@@ -38,4 +38,9 @@ public class UserController {
         userService.deleteUser(id);
         return "User deleted successfully";
     }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User user) {
+        return userService.updateUser(id, user);
+    }
 }

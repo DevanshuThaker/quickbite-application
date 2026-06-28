@@ -32,4 +32,20 @@ public class FoodItemService {
     public void deleteFoodItem(Long id) {
         foodItemRepository.deleteById(id);
     }
+
+    public FoodItem updateFoodItem(Long id, FoodItem updatedFoodItem) {
+
+        // Step 1 — find existing food item from DB
+        FoodItem existingFoodItem = foodItemRepository.findById(id).orElse(null);
+
+        // Step 2 — update its fields with new values
+        existingFoodItem.setName(updatedFoodItem.getName());
+        existingFoodItem.setDescription(updatedFoodItem.getDescription());
+        existingFoodItem.setPrice(updatedFoodItem.getPrice());
+        existingFoodItem.setCategory(updatedFoodItem.getCategory());
+        existingFoodItem.setAvailable(updatedFoodItem.getAvailable());
+
+        // Step 3 — save updated object back to DB
+        return foodItemRepository.save(existingFoodItem);   
+    }
 }
